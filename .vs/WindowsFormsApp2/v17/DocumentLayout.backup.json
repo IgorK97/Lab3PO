@@ -1,0 +1,112 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1C299438-6C99-4F57-9CFD-AF52D49576F8}|DAL\\DAL.csproj|c:\\users\\igor\\source\\repos\\lab3po\\dal\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{1C299438-6C99-4F57-9CFD-AF52D49576F8}|DAL\\DAL.csproj|solutionrelative:dal\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C709D30-6793-4FB8-A235-0315DEB6FC8A}|WindowsFormsApp2\\WindowsFormsApp2.csproj|c:\\users\\igor\\source\\repos\\lab3po\\windowsformsapp2\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{2C709D30-6793-4FB8-A235-0315DEB6FC8A}|WindowsFormsApp2\\WindowsFormsApp2.csproj|solutionrelative:windowsformsapp2\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C299438-6C99-4F57-9CFD-AF52D49576F8}|DAL\\DAL.csproj|c:\\users\\igor\\source\\repos\\lab3po\\dal\\pizzadeliverydb.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{1C299438-6C99-4F57-9CFD-AF52D49576F8}|DAL\\DAL.csproj|solutionrelative:dal\\pizzadeliverydb.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC201CCE-1AFF-4F1C-8BE3-06807BF5ECC9}|BLL\\BLL.csproj|c:\\users\\igor\\source\\repos\\lab3po\\bll\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC201CCE-1AFF-4F1C-8BE3-06807BF5ECC9}|BLL\\BLL.csproj|solutionrelative:bll\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C299438-6C99-4F57-9CFD-AF52D49576F8}|DAL\\DAL.csproj|c:\\users\\igor\\source\\repos\\lab3po\\dal\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C299438-6C99-4F57-9CFD-AF52D49576F8}|DAL\\DAL.csproj|solutionrelative:dal\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\WindowsFormsApp2\\App.config",
+              "RelativeDocumentMoniker": "WindowsFormsApp2\\App.config",
+              "ToolTip": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\WindowsFormsApp2\\App.config",
+              "RelativeToolTip": "WindowsFormsApp2\\App.config",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAADEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-10-06T18:31:06.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\DAL\\App.config",
+              "RelativeDocumentMoniker": "DAL\\App.config",
+              "ToolTip": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\DAL\\App.config",
+              "RelativeToolTip": "DAL\\App.config",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC0AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-10-06T18:30:47.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PizzaDeliveryDb.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\DAL\\PizzaDeliveryDb.edmx",
+              "RelativeDocumentMoniker": "DAL\\PizzaDeliveryDb.edmx",
+              "ToolTip": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\DAL\\PizzaDeliveryDb.edmx [Diagram1]",
+              "RelativeToolTip": "DAL\\PizzaDeliveryDb.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2024-10-06T18:29:09.71Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\BLL\\Class1.cs",
+              "RelativeDocumentMoniker": "BLL\\Class1.cs",
+              "ToolTip": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\BLL\\Class1.cs",
+              "RelativeToolTip": "BLL\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T18:18:07.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\DAL\\Class1.cs",
+              "RelativeDocumentMoniker": "DAL\\Class1.cs",
+              "ToolTip": "C:\\Users\\Igor\\source\\repos\\Lab3PO\\DAL\\Class1.cs",
+              "RelativeToolTip": "DAL\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T18:17:16.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
