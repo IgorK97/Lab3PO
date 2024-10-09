@@ -483,7 +483,7 @@
             // 
             // bindingSourceClients
             // 
-            this.bindingSourceClients.DataSource = typeof(WindowsFormsApp2.clients);
+            //this.bindingSourceClients.DataSource = typeof(WindowsFormsApp2.clients);
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -563,7 +563,7 @@
             // 
             // bindingSourceOrders
             // 
-            this.bindingSourceOrders.DataSource = typeof(WindowsFormsApp2.orders);
+            //this.bindingSourceOrders.DataSource = typeof(WindowsFormsApp2.orders);
             // 
             // KC
             // 
