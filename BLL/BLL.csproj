@@ -41,8 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DTO\IngredientDto.cs" />
+    <Compile Include="DTO\OrderDto.cs" />
+    <Compile Include="DTO\OrderLineDto.cs" />
+    <Compile Include="DTO\PizzaDto.cs" />
+    <Compile Include="DTO\PizzaSizesDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\OrderLinesService.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\ReportService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -50,5 +57,6 @@
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,7 +11,8 @@ namespace DAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class pizza_sizes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,13 @@ namespace DAL
         {
             this.order_lines = new HashSet<order_lines>();
         }
-    
+        [Key]
         public int id { get; set; }
+        [Required]
         public string name { get; set; }
+        [Required]
         public decimal price { get; set; }
+        [Required]
         public decimal weight { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
