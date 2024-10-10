@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Core.Common.EntitySql;
 using System.Data.Entity;
+using DAL;
+using System.Runtime.Remoting.Contexts;
 
 namespace BLL.Services
 {
@@ -13,65 +15,54 @@ namespace BLL.Services
     {
         public class OrdersByMonth
         {
-            public string Customer { get; set; }
-            public string Phones { get; set; }
-            public DateTime Date { get; set; }
+            public int order_id {  get; set; }
+            public string Courier { get; set; }
+            public DateTimeOffset Date { get; set; }
         }
-        private class SPResult
+        public class ParResult
         {
-            public string Customer { get; set; }
-            public string PhoneName { get; set; }
-            public DateTime Date { get; set; }
+            public int order_id { get; set; }
+            public int client_id { get; set; }
+            public int courier_id {  get; set; }
+            public string client_full_name { get; set; }
+            public string courier_full_name { get; set; }
+            public DateTimeOffset order_date { get; set; }
         }
-        public class ReportData
+        
+        public static List<OrdersByMonth> ExecuteSP(int month, int year, int ClientId)
         {
-            public string PhoneName { get; set; }
-            public decimal Cost { get; set; }
-        }
 
-        //выполнить ХП
-        public static List<OrdersByMonth> ExecuteSP(int month, int year)
-        {
-            //PhonesContext db = new PhonesContext();
-            //NpgsqlParameter param1 = new NpgsqlParameter("month", month);
-            //NpgsqlParameter param2 = new NpgsqlParameter("year", year);
-
-            //var result = db.Database.SqlQuery<SPResult>("select * from Orders_getByMonth (:month,:year)", new object[] { param1, param2 }).ToList();
-            //var data = result.GroupBy(i => new { i.Customer, i.Date }).ToDictionary(i => i.Key, i => i.Select(j => j.PhoneName))
-            //    .Select(i => new OrdersByMonth
-            //    {
-            //        Customer = i.Key.Customer,
-            //        Date = i.Key.Date,
-            //        Phones = string.Join(",", i.Value.Select(j => j).ToArray())
-            //    }).ToList();
-
-            //return data;
-            NpgsqlParameter param1 = new NpgsqlParameter("month", (int)numericUpDown1.Value);
-            NpgsqlParameter param2 = new NpgsqlParameter("year", (int)numericUpDown2.Value);
+            MyPizzaDeliveryContext dbContext = new MyPizzaDeliveryContext();
+            NpgsqlParameter param1 = new NpgsqlParameter("month", month);
+            NpgsqlParameter param2 = new NpgsqlParameter("year", year);
 
             var result = dbContext.Database.SqlQuery<ParResult>("select * from GetOrdersByMonthYear(@month, @year)", new object[] { param1, param2 }).ToList();
-            //var data = result.GroupBy(i => new { i.courier_full_name }).ToDictionary(i => i.Key, i => i.Select(j => j.order_id)).Select(i =>
-            //new { i.Key.courier_full_name, clients = String.Join(",", i.Value.Select(j => j).ToArray()) }).ToList();
-
-            //var data = result.GroupBy(i => new { i.courier_full_name }).ToDictionary(i => i.Key, i => i.Select(j => j.order_id)).Select(i =>
-            //new { i.Key.courier_full_name, orders = String.Join(",", i.Value.Select(j => j).ToArray()) }).ToList();
-
-            var data = result.GroupBy(i => i.courier_full_name).Select(j =>
-            new { j.Key, ordercount = j.Count() }).OrderByDescending(c => c.ordercount).ToList();
+            
+            var data = result.Where(i => i.client_id ==ClientId).Select(j =>
+            new OrdersByMonth{ order_id=j.order_id, Courier=j.courier_full_name , Date=j.order_date }).OrderByDescending(c => c.Date).ToList();
 
             return data;
-            //dataGridViewReport2.DataSource = data;
 
         }
 
-        public static List<ReportData> ReportOrdersByMonth(int manufId)
+        public class ReportData
         {
-            PhonesContext db = new PhonesContext();
-            var request = db.Phones
-             .Join(db.Manufacturers, ph => ph.ManufacturerId, m => m.Id, (ph, m) => ph)
-             .Where(i => i.ManufacturerId == manufId)
-             .Select(i => new ReportData() { PhoneName = i.Name, Cost = i.Cost })
-             .ToList();
+            public string Name { get; set; }
+            public string Description { get; set; }
+        }
+
+        public static List<ReportData> ReportOrdersByMonth(int ingredientId)
+        {
+
+            MyPizzaDeliveryContext dbContext = new MyPizzaDeliveryContext();
+
+            var request = dbContext.pizza.Where(p => p.ingredients.Any(i => i.id == ingredientId))
+                .Select(p => new ReportData
+                {
+                    Name = p.C_name,
+                    Description = p.description
+
+                }).ToList();
             return request;
         }
     }

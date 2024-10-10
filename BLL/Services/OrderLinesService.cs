@@ -3,51 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
+using BLL.DTO;
 
-namespace BLL.Services
+
+namespace BLL
 {
     internal class OrderLinesService
     {
-        private PhonesContext db;
-        public PhoneService()
+        private MyPizzaDeliveryContext db;
+        public OrderLinesService()
         {
-            db = new PhonesContext();
+            db = new MyPizzaDeliveryContext();
         }
 
-        public List<PhoneDto> GetAllPhones()
+        public List<OrderLineDto> GetAllOrderLines(int OrderId)
         {
-            return db.Phones.ToList().Select(i => new PhoneDto(i)).ToList();
+            return db.order_lines.ToList().Where(i => i.ordersId==OrderId).Select(i => new OrderLineDto(i)).ToList();
         }
 
 
-        public PhoneDto GetPhone(int Id)
+        public OrderLineDto GetOrderLine(int Id)
         {
-            return new PhoneDto(db.Phones.Find(Id));
+            return new OrderLineDto(db.order_lines.Find(Id));
         }
 
-        public void CreatePhone(PhoneDto p)
+        public void CreateOrdrLine(OrderLineDto p)
         {
-            db.Phones.Add(new Phone() { Cost = p.Cost, ManufacturerId = 1, Name = p.Name, Description = p.Description });
+            db.order_lines.Add(new order_lines() { position_price = p.position_price, ordersId=p.ordersId, custom = p.custom,
+            weight=p.weight, pizzaId=p.pizzaId, pizza_sizesId=p.pizza_sizesId, quantity=p.quantity});
             Save();
-            //db.Phones.Attach(p);
+            //db.order_lines.Attach(p);
         }
 
-        public void UpdatePhone(PhoneDto p)
+        public void UpdateOrderLine(OrderLineDto p)
         {
-            Phone ph = db.Phones.Find(p.Id);
-            ph.Name = p.Name;
-            ph.Cost = p.Cost;
-            ph.Description = p.Description;
-            ph.ManufacturerId = p.ManufacturerId;
+            order_lines ol = db.order_lines.Find(p.Id);
+            ol.weight= p.weight;
+            ol.custom= p.custom;
+            ol.pizzaId= p.pizzaId;
+            ol.position_price= p.position_price;
+            ol.pizza_sizesId = p.pizza_sizesId;
+            ol.quantity= p.quantity;
+            ol.ordersId = p.ordersId;
             Save();
         }
 
-        public void DeletePhone(int id)
+        public void DeleteOrderLine(int id)
         {
-            Phone p = db.Phones.Find(id);
+            order_lines p = db.order_lines.Find(id);
             if (p != null)
             {
-                db.Phones.Remove(p);
+                db.order_lines.Remove(p);
                 Save();
             }
         }
@@ -59,9 +66,19 @@ namespace BLL.Services
             return false;
         }
 
-        public List<ManufacturerDto> GetManufacturers()
+        public List<PizzaDto> GetPizzas()
         {
-            return db.Manufacturers.ToList().Select(i => new ManufacturerDto(i)).ToList();
+            return db.pizza.ToList().Select(i => new PizzaDto(i)).ToList();
+        }
+
+        public List<PizzaSizesDto> GetPizzaSizes()
+        {
+            return db.pizza_sizes.ToList().Select(i => new PizzaSizesDto(i)).ToList();
+        }
+
+        public List<IngredientDto> GetIngredients()
+        {
+            return db.ingredients.ToList().Select(i => new IngredientDto(i)).ToList();
         }
     }
 }
