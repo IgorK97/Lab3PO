@@ -31,24 +31,21 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.dataGridViewOrderLines = new System.Windows.Forms.DataGridView();
-            this.bindingSourceOrderLines = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
-            this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxIngredients = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewReport1 = new System.Windows.Forms.DataGridView();
-            this.NA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ND = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
+            this.dataGridViewReport1 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -56,16 +53,9 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewReport2 = new System.Windows.Forms.DataGridView();
-            this.KC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button4 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.Id_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersId_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pizzaId = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.CustomColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.PositionPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceOrderLines = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
             this.IdOrders = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientId_Orders = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourierId_Orders = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -77,13 +67,23 @@
             this.delstatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.managersId = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Id_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersId_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pizzaId = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.CustomColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PositionPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumberofOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Idpizzas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ND = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrderLines)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport1)).BeginInit();
@@ -92,6 +92,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -121,6 +123,15 @@
             this.tabPage1.Text = "Корзина";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(338, 6);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(90, 31);
+            this.button8.TabIndex = 5;
+            this.button8.Text = "Заказать";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(231, 6);
@@ -141,20 +152,11 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(406, 10);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(80, 32);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "ADD";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // dataGridViewOrderLines
             // 
             this.dataGridViewOrderLines.AllowUserToAddRows = false;
             this.dataGridViewOrderLines.AllowUserToDeleteRows = false;
+            this.dataGridViewOrderLines.AutoGenerateColumns = false;
             this.dataGridViewOrderLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOrderLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id_OrderLine,
@@ -163,6 +165,7 @@
             this.CustomColumn,
             this.PositionPrice,
             this.Weight});
+            this.dataGridViewOrderLines.DataSource = this.bindingSourceOrderLines;
             this.dataGridViewOrderLines.Location = new System.Drawing.Point(7, 43);
             this.dataGridViewOrderLines.Name = "dataGridViewOrderLines";
             this.dataGridViewOrderLines.ReadOnly = true;
@@ -196,6 +199,7 @@
             // 
             this.dataGridViewOrders.AllowUserToAddRows = false;
             this.dataGridViewOrders.AllowUserToDeleteRows = false;
+            this.dataGridViewOrders.AutoGenerateColumns = false;
             this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdOrders,
@@ -209,6 +213,7 @@
             this.delstatus,
             this.comment,
             this.managersId});
+            this.dataGridViewOrders.DataSource = this.bindingSourceOrders;
             this.dataGridViewOrders.Location = new System.Drawing.Point(7, 51);
             this.dataGridViewOrders.Name = "dataGridViewOrders";
             this.dataGridViewOrders.ReadOnly = true;
@@ -256,6 +261,16 @@
             this.comboBoxIngredients.Size = new System.Drawing.Size(185, 21);
             this.comboBoxIngredients.TabIndex = 1;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(406, 10);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(80, 32);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "ADD";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -264,35 +279,6 @@
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ингредиент";
-            // 
-            // dataGridViewReport1
-            // 
-            this.dataGridViewReport1.AllowUserToAddRows = false;
-            this.dataGridViewReport1.AllowUserToDeleteRows = false;
-            this.dataGridViewReport1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewReport1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NA,
-            this.ND});
-            this.dataGridViewReport1.Location = new System.Drawing.Point(3, 76);
-            this.dataGridViewReport1.Name = "dataGridViewReport1";
-            this.dataGridViewReport1.ReadOnly = true;
-            this.dataGridViewReport1.Size = new System.Drawing.Size(762, 321);
-            this.dataGridViewReport1.TabIndex = 1;
-            this.dataGridViewReport1.DoubleClick += new System.EventHandler(this.dataGridViewReport1_DoubleClick);
-            // 
-            // NA
-            // 
-            this.NA.DataPropertyName = "Name";
-            this.NA.HeaderText = "Название";
-            this.NA.Name = "NA";
-            this.NA.ReadOnly = true;
-            // 
-            // ND
-            // 
-            this.ND.DataPropertyName = "Description";
-            this.ND.HeaderText = "Описание";
-            this.ND.Name = "ND";
-            this.ND.ReadOnly = true;
             // 
             // button3
             // 
@@ -303,6 +289,22 @@
             this.button3.Text = "Найти";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.buttonGetReport1_Click);
+            // 
+            // dataGridViewReport1
+            // 
+            this.dataGridViewReport1.AllowUserToAddRows = false;
+            this.dataGridViewReport1.AllowUserToDeleteRows = false;
+            this.dataGridViewReport1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewReport1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Idpizzas,
+            this.NA,
+            this.ND});
+            this.dataGridViewReport1.Location = new System.Drawing.Point(3, 76);
+            this.dataGridViewReport1.Name = "dataGridViewReport1";
+            this.dataGridViewReport1.ReadOnly = true;
+            this.dataGridViewReport1.Size = new System.Drawing.Size(762, 321);
+            this.dataGridViewReport1.TabIndex = 1;
+            this.dataGridViewReport1.DoubleClick += new System.EventHandler(this.dataGridViewReport1_DoubleClick);
             // 
             // tabPage4
             // 
@@ -396,6 +398,7 @@
             this.dataGridViewReport2.AllowUserToDeleteRows = false;
             this.dataGridViewReport2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewReport2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NumberofOrder,
             this.KC,
             this.FC});
             this.dataGridViewReport2.Location = new System.Drawing.Point(4, 58);
@@ -403,20 +406,6 @@
             this.dataGridViewReport2.ReadOnly = true;
             this.dataGridViewReport2.Size = new System.Drawing.Size(761, 339);
             this.dataGridViewReport2.TabIndex = 1;
-            // 
-            // KC
-            // 
-            this.KC.DataPropertyName = "Key";
-            this.KC.HeaderText = "ФИО";
-            this.KC.Name = "KC";
-            this.KC.ReadOnly = true;
-            // 
-            // FC
-            // 
-            this.FC.DataPropertyName = "ordercount";
-            this.FC.HeaderText = "Количество";
-            this.FC.Name = "FC";
-            this.FC.ReadOnly = true;
             // 
             // button4
             // 
@@ -428,63 +417,10 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.buttonReport2_Click);
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(338, 6);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(90, 31);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "Заказать";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // Id_OrderLine
-            // 
-            this.Id_OrderLine.DataPropertyName = "id";
-            this.Id_OrderLine.HeaderText = "Id";
-            this.Id_OrderLine.Name = "Id_OrderLine";
-            this.Id_OrderLine.ReadOnly = true;
-            // 
-            // OrdersId_OrderLine
-            // 
-            this.OrdersId_OrderLine.DataPropertyName = "ordersId";
-            this.OrdersId_OrderLine.HeaderText = "Номер заказа";
-            this.OrdersId_OrderLine.Name = "OrdersId_OrderLine";
-            this.OrdersId_OrderLine.ReadOnly = true;
-            // 
-            // pizzaId
-            // 
-            this.pizzaId.DataPropertyName = "pizzaId";
-            this.pizzaId.HeaderText = "Пицца";
-            this.pizzaId.Name = "pizzaId";
-            this.pizzaId.ReadOnly = true;
-            // 
-            // CustomColumn
-            // 
-            this.CustomColumn.DataPropertyName = "custom";
-            this.CustomColumn.HeaderText = "Пользовательская";
-            this.CustomColumn.Name = "CustomColumn";
-            this.CustomColumn.ReadOnly = true;
-            // 
-            // PositionPrice
-            // 
-            this.PositionPrice.DataPropertyName = "position_price";
-            this.PositionPrice.HeaderText = "Цена";
-            this.PositionPrice.Name = "PositionPrice";
-            this.PositionPrice.ReadOnly = true;
-            // 
-            // Weight
-            // 
-            this.Weight.DataPropertyName = "weight";
-            this.Weight.HeaderText = "Вес";
-            this.Weight.Name = "Weight";
-            this.Weight.ReadOnly = true;
-            this.Weight.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Weight.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // IdOrders
             // 
             this.IdOrders.DataPropertyName = "id";
-            this.IdOrders.HeaderText = "Id";
+            this.IdOrders.HeaderText = "Номер заказа";
             this.IdOrders.Name = "IdOrders";
             this.IdOrders.ReadOnly = true;
             // 
@@ -494,6 +430,7 @@
             this.clientId_Orders.HeaderText = "Клиент";
             this.clientId_Orders.Name = "clientId_Orders";
             this.clientId_Orders.ReadOnly = true;
+            this.clientId_Orders.Visible = false;
             // 
             // CourierId_Orders
             // 
@@ -503,6 +440,7 @@
             this.CourierId_Orders.ReadOnly = true;
             this.CourierId_Orders.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.CourierId_Orders.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.CourierId_Orders.Visible = false;
             // 
             // final_price
             // 
@@ -561,6 +499,96 @@
             this.managersId.ReadOnly = true;
             this.managersId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.managersId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.managersId.Visible = false;
+            // 
+            // Id_OrderLine
+            // 
+            this.Id_OrderLine.DataPropertyName = "id";
+            this.Id_OrderLine.HeaderText = "Id";
+            this.Id_OrderLine.Name = "Id_OrderLine";
+            this.Id_OrderLine.ReadOnly = true;
+            this.Id_OrderLine.Visible = false;
+            // 
+            // OrdersId_OrderLine
+            // 
+            this.OrdersId_OrderLine.DataPropertyName = "ordersId";
+            this.OrdersId_OrderLine.HeaderText = "Номер заказа";
+            this.OrdersId_OrderLine.Name = "OrdersId_OrderLine";
+            this.OrdersId_OrderLine.ReadOnly = true;
+            this.OrdersId_OrderLine.Visible = false;
+            // 
+            // pizzaId
+            // 
+            this.pizzaId.DataPropertyName = "pizzaId";
+            this.pizzaId.HeaderText = "Пицца";
+            this.pizzaId.Name = "pizzaId";
+            this.pizzaId.ReadOnly = true;
+            // 
+            // CustomColumn
+            // 
+            this.CustomColumn.DataPropertyName = "custom";
+            this.CustomColumn.HeaderText = "Пользовательская";
+            this.CustomColumn.Name = "CustomColumn";
+            this.CustomColumn.ReadOnly = true;
+            // 
+            // PositionPrice
+            // 
+            this.PositionPrice.DataPropertyName = "position_price";
+            this.PositionPrice.HeaderText = "Цена";
+            this.PositionPrice.Name = "PositionPrice";
+            this.PositionPrice.ReadOnly = true;
+            // 
+            // Weight
+            // 
+            this.Weight.DataPropertyName = "weight";
+            this.Weight.HeaderText = "Вес";
+            this.Weight.Name = "Weight";
+            this.Weight.ReadOnly = true;
+            this.Weight.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Weight.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NumberofOrder
+            // 
+            this.NumberofOrder.DataPropertyName = "order_id";
+            this.NumberofOrder.HeaderText = "Номер заказа";
+            this.NumberofOrder.Name = "NumberofOrder";
+            this.NumberofOrder.ReadOnly = true;
+            // 
+            // KC
+            // 
+            this.KC.DataPropertyName = "Courier";
+            this.KC.HeaderText = "ФИО курьера";
+            this.KC.Name = "KC";
+            this.KC.ReadOnly = true;
+            // 
+            // FC
+            // 
+            this.FC.DataPropertyName = "Date";
+            this.FC.HeaderText = "Дата заказа";
+            this.FC.Name = "FC";
+            this.FC.ReadOnly = true;
+            // 
+            // Idpizzas
+            // 
+            this.Idpizzas.DataPropertyName = "Id";
+            this.Idpizzas.HeaderText = "Id";
+            this.Idpizzas.Name = "Idpizzas";
+            this.Idpizzas.ReadOnly = true;
+            this.Idpizzas.Visible = false;
+            // 
+            // NA
+            // 
+            this.NA.DataPropertyName = "Name";
+            this.NA.HeaderText = "Название";
+            this.NA.Name = "NA";
+            this.NA.ReadOnly = true;
+            // 
+            // ND
+            // 
+            this.ND.DataPropertyName = "Description";
+            this.ND.HeaderText = "Описание";
+            this.ND.Name = "ND";
+            this.ND.ReadOnly = true;
             // 
             // Form1
             // 
@@ -574,10 +602,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrderLines)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -588,6 +614,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -639,10 +667,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ND;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FC;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id_OrderLine;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrdersId_OrderLine;
@@ -661,6 +685,12 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn delstatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn comment;
         private System.Windows.Forms.DataGridViewComboBoxColumn managersId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumberofOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Idpizzas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ND;
     }
 }
 

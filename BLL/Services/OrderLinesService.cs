@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using BLL.DTO;
+using System.Diagnostics;
+using System.Reflection;
+using Npgsql.TypeHandlers.NumericHandlers;
 
 
 namespace BLL
@@ -16,6 +19,13 @@ namespace BLL
         {
             db = new MyPizzaDeliveryContext();
         }
+
+        public enum PizzaSize
+        {
+            Small=1,
+            Medium=2,
+            Big=3
+        };
 
         public List<OrderLineDto> GetAllOrderLines(int OrderId)
         {
@@ -81,9 +91,39 @@ namespace BLL
             return db.DelStatus.ToList().Select(i => new DelStatusDto(i)).ToList();
         }
 
-        public List<IngredientDto> GetIngredients()
+        public List<IngredientShortDto> GetIngredients(PizzaSize ps)
         {
-            return db.ingredients.ToList().Select(i => new IngredientDto(i)).ToList();
+            return db.ingredients.ToList().Select(i => new IngredientShortDto
+            {
+                Id=i.id,
+                C_name=i.C_name,
+                price = ps==PizzaSize.Small ? i.price_per_gram*i.small : ps==PizzaSize.Medium ?
+                i.price_per_gram*i.medium : i.price_per_gram*i.big,
+                weight = ps == PizzaSize.Small ? i.small : ps == PizzaSize.Medium ?
+                i.medium : i.big,
+                active = false
+            }).ToList();
+        }
+
+        public (decimal price, decimal weight) GetBasePriceAndWeight(PizzaSize ps)
+        {
+
+            var res = db.pizza_sizes.ToList().Where(i => i.id == (int)Convert.ChangeType(ps, ps.GetTypeCode())).
+                Select(i => new
+                {
+                    price = i.price,
+                    weight = i.weight
+                }).FirstOrDefault();
+            return (res.price, res.weight);
+        }
+
+        public (decimal price, decimal weight) GetConcretePriceAndWeight(int p_id, PizzaSize ps)
+        {
+            pizza concrete_pizza = db.pizza.FirstOrDefault(p => p.id == p_id);
+            if (concrete_pizza == null)
+                throw new ArgumentException($"Pizza with ID {p_id} not found");
+            var totalPrice = (from ingredients in concrete_pizza.ingredients join ingredients
+                              on concrete_pizza.)
         }
     }
 }

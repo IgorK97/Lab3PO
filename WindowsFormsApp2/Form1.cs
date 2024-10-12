@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using System.Runtime.Remoting.Contexts;
+using System.IO;
 
 namespace WindowsFormsApp2
 {
@@ -31,7 +32,7 @@ namespace WindowsFormsApp2
         //ReportService reportService = new ReportService();
         int currentOrderId, currentClientId;
 
-        List<IngredientDto> allingredients;
+        List<IngredientShortDto> allingredients;
         List<OrderDto> allorders;
         List<OrderLineDto> allorderlines;
         List<PizzaSizesDto> allpizzasizes;
@@ -47,7 +48,7 @@ namespace WindowsFormsApp2
             InitializeComponent();
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             
-            currentClientId = 1;
+            currentClientId = 3;
             currentOrderId = orderService.GetCurrentOrder(currentClientId);
             
 
@@ -58,12 +59,11 @@ namespace WindowsFormsApp2
         private void loadData()
         {
             allpizzas = orderlinesService.GetPizzas();
-            allingredients = orderlinesService.GetIngredients();
+            allingredients = orderlinesService.GetIngredients(OrderLinesService.PizzaSize.Small);
             allorderlines = orderlinesService.GetAllOrderLines(currentOrderId);
             allorders = orderService.GetAllOrders(currentClientId);
             alldelstatus = orderlinesService.GetDelStatuses();
-            bindingSourceOrders.DataSource = allorders;
-            bindingSourceOrderLines.DataSource = allorderlines;
+            
             allpizzasizes = orderlinesService.GetPizzaSizes();
             allmanagers = orderService.GetAllManagers();
             allcouriers = orderService.GetAllCouriers();
@@ -72,6 +72,8 @@ namespace WindowsFormsApp2
             FillManagerCombobox();
             FillPizzaCombobox();
             FillReport1Combobox();
+            bindingSourceOrders.DataSource = allorders;
+            bindingSourceOrderLines.DataSource = allorderlines;
         }
         //private void LoadPizzas()
         //{
@@ -138,18 +140,6 @@ namespace WindowsFormsApp2
                 "Id";
         }
 
-
-
-        //private void FillClientCombobox()
-        //{
-        //    ((DataGridViewComboBoxColumn)dataGridViewOrders.Columns["clientId"]).DataSource =
-        //        allclients;
-        //    ((DataGridViewComboBoxColumn)dataGridViewOrders.Columns["ClientId"]).DisplayMember =
-        //        "first_name";
-        //    ((DataGridViewComboBoxColumn)dataGridViewOrders.Columns["ClientId"]).ValueMember =
-        //        "id";
-        //}
-
         private void FillReport1Combobox()
         {
             comboBoxIngredients.DataSource = allingredients;
@@ -157,9 +147,6 @@ namespace WindowsFormsApp2
             comboBoxIngredients.ValueMember = "id";
         }
 
-        /// <summary>
-        /// Заполнить комбобокс "Курьеры" в таблице "Заказы".
-        /// </summary>
         private void FillCourierCombobox()
         {
             ((DataGridViewComboBoxColumn)dataGridViewOrders.Columns["CourierId_Orders"]).DataSource =
@@ -170,9 +157,7 @@ namespace WindowsFormsApp2
                 "Id";
         }
 
-        /// <summary>
-        /// Сохранить изменения в таблице clients.
-        /// </summary>
+       
         private void buttonSaveClients_Click(object sender, EventArgs e)
         {
             
@@ -192,64 +177,17 @@ namespace WindowsFormsApp2
 
         private void buttonGetReport1_Click(object sender, EventArgs e)
         {
-            dataGridViewReport1.DataSource = ReportService.ReportOrdersByMonth((int)comboBoxIngredients.SelectedValue);
+            dataGridViewReport1.DataSource = ReportService.ReportPizzas((int)comboBoxIngredients.SelectedValue);
         }
 
-        
 
-        //private void buttonGetReport1_Click(object sender, EventArgs e)
-        //{
-        //    //var request = dbContext.pizza.Join(dbContext.ingredients, p => p.ingredients, m => m.id,
-        //    //    (p, m) => p).Where(i => i.ingredients == (int)comboBoxIngredients.SelectedValue)
-        //    //    .Select(i => new { PizzaName = i.C_name, Description = i.description })
-        //    //    .ToList();
-        //    var request = dbContext.pizza.Where(p => p.ingredients.Any(i => i.id == (int)comboBoxIngredients.SelectedValue))
-        //        .Select(p=>new
-        //        {
-        //            Name = p.C_name,
-        //            Description = p.description
-                   
-        //        }).ToList();
-        //    dataGridViewReport1.DataSource = request;
-
-
-        //}
-
-        //private class ParResult
-        //{
-        //    public int order_id { get; set; }
-        //    public string client_full_name { get; set; }
-        //    public string courier_full_name { get; set; }
-        //    public DateTime order_date { get; set; }
-        //}
 
         private void buttonReport2_Click(object sender, EventArgs e)
         {
-            dataGridViewReport2.DataSource = ReportService.ExecuteSP((int)numericUpDown1.Value, (int)numericUpDown2.Value, 1);
+            dataGridViewReport2.DataSource = ReportService.ExecuteSP((int)numericUpDown1.Value, (int)numericUpDown2.Value, currentClientId);
         }
 
-        /// <summary>
-        /// нажатие кнопки вызова хранимой процедуры
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void buttonReport2_Click(object sender, EventArgs e)
-        //{
-
-
-        //    NpgsqlParameter param1 = new NpgsqlParameter("month", (int)numericUpDown1.Value);
-        //    NpgsqlParameter param2 = new NpgsqlParameter("year", (int)numericUpDown2.Value);
-
-        //    var result = dbContext.Database.SqlQuery<ParResult>("select * from GetOrdersByMonthYear(@month, @year)", new object[] { param1, param2 }).ToList();
-            
-        //    var data = result.GroupBy(i => i.courier_full_name).Select(j =>
-        //    new { j.Key, ordercount = j.Count()}).OrderByDescending(c => c.ordercount).ToList();
-
-
-        //    dataGridViewReport2.DataSource = data;
-            
-        //}
-
+        
         private void buttonSaveOrders_Click(object sender, EventArgs e)
         {
 
@@ -269,11 +207,58 @@ namespace WindowsFormsApp2
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddClientForm f = new AddClientForm(/*dbContext, null*/);
+            int index = getSelectedRow(dataGridViewReport1);
+            if (index != -1)
+            {
+                int p_id = 0;
+                bool converted = Int32.TryParse(dataGridViewReport1[0, index].Value.ToString(), out p_id);
+                if (converted == false)
+                    return;
+                PizzaDto p = allpizzas.Where(i => i.Id == p_id).FirstOrDefault();
+                if (p != null)
+                {
+                    AddClientForm f = new AddClientForm(/*dbContext, null*/);
+
+                    f.comboBoxPizzasName.DataSource = allpizzas;
+                    f.comboBoxPizzasName.DisplayMember = "C_name";
+                    f.comboBoxPizzasName.ValueMember = "Id";
+                    f.comboBoxPizzasName.SelectedValue = p.Id;
+
+                    f.pictureBox1.Image = ByteToImage(p.pizzaimage);
+                    f.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    f.richTextBox1.Text = p.description;
+
+                    f.comboBoxPizzasSizes.DataSource = allpizzasizes;
+                    f.comboBoxPizzasSizes.DisplayMember = "name";
+                    f.comboBoxPizzasSizes.ValueMember = "Id";
+                    f.comboBoxPizzasSizes.SelectedIndex = 0;
+
+                    f.dataGridView1.DataSource = allingredients;
+
+                    DialogResult result = f.ShowDialog(this);
+                    if (result == DialogResult.Cancel)
+                        return;
+
+
+                    //Дальше идет создание строки заказа
+
+                    MessageBox.Show("Новый товар добавлен в корзину");
+                }
+            }
+            else MessageBox.Show("Выберите пиццу, которую хотите поместить в корзину");
             
 
-            f.ShowDialog(this);
+        }
 
+        public static Bitmap ByteToImage(byte[] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = blob;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
         }
 
         private int getSelectedRow(DataGridView dgv)
