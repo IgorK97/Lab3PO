@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.DTO
 {
-    internal class PizzaSizesDto
+    public class PizzaSizesDto
     {
         public PizzaSizesDto()
         {

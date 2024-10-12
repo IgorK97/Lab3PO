@@ -11,7 +11,7 @@ using System.Runtime.Remoting.Contexts;
 
 namespace BLL.Services
 {
-    internal class ReportService
+    public class ReportService
     {
         public class OrdersByMonth
         {

@@ -87,7 +87,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\CouriersDto.cs" />
+    <Compile Include="DTO\DelStatusDto.cs" />
     <Compile Include="DTO\IngredientDto.cs" />
+    <Compile Include="DTO\ManagerDto.cs" />
     <Compile Include="DTO\OrderDto.cs" />
     <Compile Include="DTO\OrderLineDto.cs" />
     <Compile Include="DTO\PizzaDto.cs" />

@@ -9,12 +9,23 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal class OrderService
+    public class OrderService
     {
         MyPizzaDeliveryContext db;
         public OrderService()
         {
             db = new MyPizzaDeliveryContext();
+        }
+
+        public int GetCurrentOrder(int ClientId)
+        {
+            //OrderDto oid = (OrderDto) db.orders.Where(i =>
+            //i.clientId == ClientId && i.delstatusId == 2);
+            //return oid;
+
+            int oid = db.orders.Where(i => i.clientId==ClientId && i.delstatusId==2).
+                Select(o => o.id).FirstOrDefault();
+            return oid;
         }
 
         public bool MakeOrder(OrderDto orderDto)
@@ -56,6 +67,16 @@ namespace BLL
         public List<OrderDto> GetAllOrders(int ClientId)
         {
             return db.orders.ToList().Where(i => i.clientId==ClientId).Select(i => new OrderDto(i)).ToList();
+        }
+
+        public List<ManagerDto> GetAllManagers()
+        {
+            return db.managers.ToList().Select(i => new ManagerDto(i)).ToList();
+        }
+
+        public List<CouriersDto> GetAllCouriers()
+        {
+            return db.couriers.ToList().Select(i => new CouriersDto(i)).ToList();
         }
     }
 }

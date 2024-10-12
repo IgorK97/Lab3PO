@@ -34,14 +34,14 @@ namespace WindowsFormsApp2
         public Label label11;
         private Button button1;
         public TextBox textBox1;
-        PizzaDeliveryContext dbContext/* = new PizzaDeliveryContext()*/;
-        private clients ncl;
+        //MyPizzaDeliveryContext dbContext/* = new PizzaDeliveryContext()*/;
+        //private clients ncl;
 
-        public AddClientForm(PizzaDeliveryContext dbContext, clients ncl)
+        public AddClientForm(/*PizzaDeliveryContext dbContext, clients ncl*/)
         {
             InitializeComponent();
-            this.ncl = ncl;
-            this.dbContext = dbContext;
+            //this.ncl = ncl;
+            //this.dbContext = dbContext;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -309,113 +309,118 @@ namespace WindowsFormsApp2
         private void button1_Click_1(object sender, EventArgs e)
         {
 
-            if (textBox9.Text != textBox5.Text)
-            {
-                label11.Text = "Пароли не совпадают";
-            }
-            else
-            {
-                if (ncl==null)
-                {
-                    bool flag = true;
-                    foreach(var symbol in textBox6.Text)
-                        if (!char.IsDigit(symbol))
-                        {
-                            flag = false;
-                            break;
-                        }
-                    if (textBox1.Text != "" && textBox2.Text != "" && textBox4.Text != "" &&
-                        textBox5.Text != "" && textBox6.Text != "" && textBox7.Text != "" &&textBox7.Text.Contains('@')&&flag)
-                    {
-                        clients ncl = new clients();
-                        ncl.first_name = textBox1.Text;
-                        ncl.last_name = textBox2.Text;
-                        ncl.surname = textBox3.Text;
-                        ncl.login = textBox4.Text;
-                        ncl.C_password = textBox5.Text;
-                        ncl.phone = textBox6.Text;
-                        ncl.email = textBox7.Text;
-                        ncl.address = textBox8.Text;
-
-
-                        dbContext.clients.Add(ncl);
-                        try
-                        {
-                            dbContext.SaveChanges();
-                            Close();
-                            MessageBox.Show("Новый объект добавлен");
-                        }
-                        catch (Npgsql.PostgresException se)
-                        {
-                            label11.Text = $"Processing failed: {se.Message}";
-                        }
-                        catch (System.Data.Entity.Infrastructure.DbUpdateException sa)
-                        {
-                            label11.Text = $"Processing failed: {sa.InnerException.InnerException.Message}";
-                        }
-                        catch (System.Data.Entity.Validation.DbEntityValidationException so)
-                        {
-                            label11.Text = $"Processing failed: {so.Message}\n Проверьте наличие обязательных полей";
-                        }
-                    }
-                    else
-                    {
-                        label11.Text = "Processing failed: Проверьте наличие обязательных полей";
-
-                    }
-                }
-                else
-                {
-                    bool flag = true;
-                    foreach (var symbol in textBox6.Text)
-                        if (!char.IsDigit(symbol))
-                        {
-                            flag = false;
-                            break;
-                        }
-                    if (textBox1.Text != "" && textBox2.Text != "" && textBox4.Text != "" &&
-                        textBox5.Text != "" && textBox6.Text != "" && textBox7.Text != "" && textBox7.Text.Contains('@') && flag)
-                    {
-                        ncl.first_name = textBox1.Text;
-                        ncl.last_name = textBox2.Text;
-                        ncl.surname = textBox3.Text;
-                        ncl.login = textBox4.Text;
-                        ncl.C_password = textBox5.Text;
-                        ncl.phone = textBox6.Text;
-                        ncl.email = textBox7.Text;
-                        ncl.address = textBox8.Text;
-                        try
-                        {
-                            dbContext.SaveChanges();
-                            Close();
-                            MessageBox.Show("Объект успешно изменен");
-                        }
-                        catch (Npgsql.PostgresException se)
-                        {
-                            label11.Text = $"Processing failed: {se.Message}";
-                        }
-                        catch (System.Data.Entity.Infrastructure.DbUpdateException sa)
-                        {
-                            label11.Text = $"Processing failed: {sa.InnerException.Message}, {sa.HResult}";
-                        }
-                        catch (System.Data.Entity.Validation.DbEntityValidationException so)
-                        {
-                            label11.Text = $"Processing failed: {so.Message}\n Проверьте наличие обязательных полей";
-
-                        }
-                    }
-                    else
-                    {
-                        label11.Text = "Processing failed: Проверьте наличие обязательных полей";
-
-                    }
-                }
-
-
-            }
-
-
         }
+
+        //private void button1_Click_1(object sender, EventArgs e)
+        //{
+
+        //    if (textBox9.Text != textBox5.Text)
+        //    {
+        //        label11.Text = "Пароли не совпадают";
+        //    }
+        //    else
+        //    {
+        //        if (ncl==null)
+        //        {
+        //            bool flag = true;
+        //            foreach(var symbol in textBox6.Text)
+        //                if (!char.IsDigit(symbol))
+        //                {
+        //                    flag = false;
+        //                    break;
+        //                }
+        //            if (textBox1.Text != "" && textBox2.Text != "" && textBox4.Text != "" &&
+        //                textBox5.Text != "" && textBox6.Text != "" && textBox7.Text != "" &&textBox7.Text.Contains('@')&&flag)
+        //            {
+        //                clients ncl = new clients();
+        //                ncl.first_name = textBox1.Text;
+        //                ncl.last_name = textBox2.Text;
+        //                ncl.surname = textBox3.Text;
+        //                ncl.login = textBox4.Text;
+        //                ncl.C_password = textBox5.Text;
+        //                ncl.phone = textBox6.Text;
+        //                ncl.email = textBox7.Text;
+        //                ncl.address = textBox8.Text;
+
+
+        //                dbContext.clients.Add(ncl);
+        //                try
+        //                {
+        //                    dbContext.SaveChanges();
+        //                    Close();
+        //                    MessageBox.Show("Новый объект добавлен");
+        //                }
+        //                catch (Npgsql.PostgresException se)
+        //                {
+        //                    label11.Text = $"Processing failed: {se.Message}";
+        //                }
+        //                catch (System.Data.Entity.Infrastructure.DbUpdateException sa)
+        //                {
+        //                    label11.Text = $"Processing failed: {sa.InnerException.InnerException.Message}";
+        //                }
+        //                catch (System.Data.Entity.Validation.DbEntityValidationException so)
+        //                {
+        //                    label11.Text = $"Processing failed: {so.Message}\n Проверьте наличие обязательных полей";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                label11.Text = "Processing failed: Проверьте наличие обязательных полей";
+
+        //            }
+        //        }
+        //        else
+        //        {
+        //            bool flag = true;
+        //            foreach (var symbol in textBox6.Text)
+        //                if (!char.IsDigit(symbol))
+        //                {
+        //                    flag = false;
+        //                    break;
+        //                }
+        //            if (textBox1.Text != "" && textBox2.Text != "" && textBox4.Text != "" &&
+        //                textBox5.Text != "" && textBox6.Text != "" && textBox7.Text != "" && textBox7.Text.Contains('@') && flag)
+        //            {
+        //                ncl.first_name = textBox1.Text;
+        //                ncl.last_name = textBox2.Text;
+        //                ncl.surname = textBox3.Text;
+        //                ncl.login = textBox4.Text;
+        //                ncl.C_password = textBox5.Text;
+        //                ncl.phone = textBox6.Text;
+        //                ncl.email = textBox7.Text;
+        //                ncl.address = textBox8.Text;
+        //                try
+        //                {
+        //                    dbContext.SaveChanges();
+        //                    Close();
+        //                    MessageBox.Show("Объект успешно изменен");
+        //                }
+        //                catch (Npgsql.PostgresException se)
+        //                {
+        //                    label11.Text = $"Processing failed: {se.Message}";
+        //                }
+        //                catch (System.Data.Entity.Infrastructure.DbUpdateException sa)
+        //                {
+        //                    label11.Text = $"Processing failed: {sa.InnerException.Message}, {sa.HResult}";
+        //                }
+        //                catch (System.Data.Entity.Validation.DbEntityValidationException so)
+        //                {
+        //                    label11.Text = $"Processing failed: {so.Message}\n Проверьте наличие обязательных полей";
+
+        //                }
+        //            }
+        //            else
+        //            {
+        //                label11.Text = "Processing failed: Проверьте наличие обязательных полей";
+
+        //            }
+        //        }
+
+
+        //    }
+
+
+        //}
 
         private void AddClientForm_Load(object sender, EventArgs e)
         {

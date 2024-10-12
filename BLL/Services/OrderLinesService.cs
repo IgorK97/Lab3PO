@@ -9,7 +9,7 @@ using BLL.DTO;
 
 namespace BLL
 {
-    internal class OrderLinesService
+    public class OrderLinesService
     {
         private MyPizzaDeliveryContext db;
         public OrderLinesService()
@@ -28,7 +28,7 @@ namespace BLL
             return new OrderLineDto(db.order_lines.Find(Id));
         }
 
-        public void CreateOrdrLine(OrderLineDto p)
+        public void CreateOrderLine(OrderLineDto p)
         {
             db.order_lines.Add(new order_lines() { position_price = p.position_price, ordersId=p.ordersId, custom = p.custom,
             weight=p.weight, pizzaId=p.pizzaId, pizza_sizesId=p.pizza_sizesId, quantity=p.quantity});
@@ -74,6 +74,11 @@ namespace BLL
         public List<PizzaSizesDto> GetPizzaSizes()
         {
             return db.pizza_sizes.ToList().Select(i => new PizzaSizesDto(i)).ToList();
+        }
+
+        public List<DelStatusDto> GetDelStatuses()
+        {
+            return db.DelStatus.ToList().Select(i => new DelStatusDto(i)).ToList();
         }
 
         public List<IngredientDto> GetIngredients()

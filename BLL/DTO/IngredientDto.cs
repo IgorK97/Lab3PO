@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.DTO
 {
-    internal class IngredientDto
+    public class IngredientDto
     {
         public IngredientDto()
         {
