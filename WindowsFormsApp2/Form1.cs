@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Data.Entity;
 using System.Runtime.Remoting.Contexts;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace WindowsFormsApp2
 {
@@ -32,7 +33,7 @@ namespace WindowsFormsApp2
         //ReportService reportService = new ReportService();
         int currentOrderId, currentClientId;
 
-        List<IngredientShortDto> allingredients;
+        BindingList<IngredientShortDto> allingredients;
         List<OrderDto> allorders;
         List<OrderLineDto> allorderlines;
         List<PizzaSizesDto> allpizzasizes;
@@ -41,7 +42,7 @@ namespace WindowsFormsApp2
         List<CouriersDto> allcouriers;
         List<ManagerDto> allmanagers;
 
-        
+        AddClientForm f;
 
         public Form1()
         {
@@ -50,7 +51,12 @@ namespace WindowsFormsApp2
             
             currentClientId = 3;
             currentOrderId = orderService.GetCurrentOrder(currentClientId);
-            
+
+            AddClientForm.NameNotify += PizzaNameChanged;
+            AddClientForm.SizeNotify += PizzaSizeChanged;
+            AddClientForm.CountNotify += PizzaCountChanged;
+            AddClientForm.IngredientNotify += PizzaIngredientChanged;
+
 
             loadData();
             
@@ -205,6 +211,124 @@ namespace WindowsFormsApp2
 
         }
 
+        public void PizzaNameChanged(int p_id)
+        {
+            PizzaDto p = allpizzas.Where(i => i.Id == p_id).FirstOrDefault();
+            if (p != null)
+            {
+                f.pictureBox1.Image = ByteToImage(p.pizzaimage);
+                f.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                f.richTextBox1.Text = p.description;
+
+                f.comboBoxPizzasSizes.DataSource = allpizzasizes;
+                f.comboBoxPizzasSizes.DisplayMember = "name";
+                f.comboBoxPizzasSizes.ValueMember = "Id";
+                f.comboBoxPizzasSizes.SelectedIndex = 0;
+
+                //f.dataGridView1.DataSource = null;
+                allingredients = orderlinesService.GetIngredients(OrderLinesService.PizzaSize.Small);
+                f.dataGridView1.DataSource = allingredients;
+
+                decimal count = f.numericUpDown1.Value;
+
+
+                decimal p_price, p_weight/*, base_price, base_weight*/;
+                OrderLinesService.PizzaSize ps;
+                ps = (OrderLinesService.PizzaSize)f.comboBoxPizzasSizes.SelectedValue;
+                (p_price, p_weight) = orderlinesService.GetConcretePriceAndWeight(p.Id, ps, count);
+                //(base_price, base_weight) = orderlinesService.GetBasePriceAndWeight(ps);
+                //p_price += base_price;
+                //p_weight += base_weight;
+
+                f.textBoxPrice.Text = p_price.ToString();
+                f.textBoxWeight.Text = p_weight.ToString();
+
+
+
+            }
+        }
+
+        public void PizzaSizeChanged(int ps_id)
+        {
+            int p_id = (int)f.comboBoxPizzasName.SelectedValue;
+
+            //f.pictureBox1.Image = ByteToImage(p.pizzaimage);
+            //f.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+            //f.richTextBox1.Text = p.description;
+
+            //f.comboBoxPizzasSizes.DataSource = allpizzasizes;
+            //f.comboBoxPizzasSizes.DisplayMember = "name";
+            //f.comboBoxPizzasSizes.ValueMember = "Id";
+            //f.comboBoxPizzasSizes.SelectedIndex = 0;
+            OrderLinesService.PizzaSize ps;
+
+            ps = (OrderLinesService.PizzaSize)ps_id;
+
+            //f.dataGridView1.DataSource = null;
+            allingredients = orderlinesService.GetIngredients(ps);
+            f.dataGridView1.DataSource = allingredients;
+
+            decimal count = f.numericUpDown1.Value;
+
+
+            decimal p_price, p_weight/*, base_price, base_weight*/;
+            (p_price, p_weight) = orderlinesService.PriceAndWeightCalculation(allingredients, ps, p_id, count);/*orderlinesService.GetConcretePriceAndWeight(p_id, ps, count)*/;
+            //(base_price, base_weight) = orderlinesService.GetBasePriceAndWeight(ps);
+            //p_price += base_price;
+            //p_weight += base_weight;
+
+
+            //decimal add_price, add_weight;
+
+
+
+
+            f.textBoxPrice.Text = p_price.ToString();
+            f.textBoxWeight.Text = p_weight.ToString();
+
+
+
+
+        }
+
+        public void PizzaCountChanged(int pc_id)
+        {
+            decimal p_price, p_weight/*, base_price, base_weight*/;
+            int p_id = (int)f.comboBoxPizzasName.SelectedValue;
+
+            OrderLinesService.PizzaSize ps;
+            ps = (OrderLinesService.PizzaSize)f.comboBoxPizzasSizes.SelectedValue;
+            decimal count = f.numericUpDown1.Value;
+
+            //(p_price, p_weight) = orderlinesService.GetConcretePriceAndWeight(p_id, ps, pc_id);
+            (p_price, p_weight) = orderlinesService.PriceAndWeightCalculation(allingredients, ps, p_id, count);/*orderlinesService.GetConcretePriceAndWeight(p_id, ps, count)*/;
+
+            f.textBoxPrice.Text = p_price.ToString();
+            f.textBoxWeight.Text = p_weight.ToString();
+        }
+
+        public void PizzaIngredientChanged()
+        {
+            int indexrow = getSelectedRow(f.dataGridView1);
+            int add_id = (int) f.dataGridView1.Rows[indexrow].Cells[0].Value;
+            decimal p_price, p_weight/*, base_price, base_weight*/;
+            int p_id = (int)f.comboBoxPizzasName.SelectedValue;
+
+            OrderLinesService.PizzaSize ps;
+            ps = (OrderLinesService.PizzaSize)f.comboBoxPizzasSizes.SelectedValue;
+            decimal count = f.numericUpDown1.Value;
+
+            //(p_price, p_weight) = orderlinesService.GetConcretePriceAndWeight(p_id, ps, pc_id);
+            orderlinesService.ChangeAdditionalItems(allingredients, add_id);
+            (p_price, p_weight) = orderlinesService.PriceAndWeightCalculation(allingredients, ps, p_id, count);/*orderlinesService.GetConcretePriceAndWeight(p_id, ps, count)*/;
+
+            f.textBoxPrice.Text = p_price.ToString();
+            f.textBoxWeight.Text = p_weight.ToString();
+        }
+
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int index = getSelectedRow(dataGridViewReport1);
@@ -217,7 +341,7 @@ namespace WindowsFormsApp2
                 PizzaDto p = allpizzas.Where(i => i.Id == p_id).FirstOrDefault();
                 if (p != null)
                 {
-                    AddClientForm f = new AddClientForm(/*dbContext, null*/);
+                    f = new AddClientForm(/*dbContext, null*/);
 
                     f.comboBoxPizzasName.DataSource = allpizzas;
                     f.comboBoxPizzasName.DisplayMember = "C_name";
@@ -234,9 +358,25 @@ namespace WindowsFormsApp2
                     f.comboBoxPizzasSizes.ValueMember = "Id";
                     f.comboBoxPizzasSizes.SelectedIndex = 0;
 
+                    decimal count = f.numericUpDown1.Value;
+
+
                     f.dataGridView1.DataSource = allingredients;
 
+                    decimal p_price, p_weight/*, base_price, base_weight*/;
+                    OrderLinesService.PizzaSize ps;
+                    ps = (OrderLinesService.PizzaSize) f.comboBoxPizzasSizes.SelectedValue;
+                    (p_price, p_weight) = orderlinesService.GetConcretePriceAndWeight(p.Id, ps, count);
+                    //(base_price, base_weight) = orderlinesService.GetBasePriceAndWeight(ps);
+                    //p_price += base_price;
+                    //p_weight += base_weight;
+
+                    f.textBoxPrice.Text = p_price.ToString();
+                    f.textBoxWeight.Text = p_weight.ToString();
+
                     DialogResult result = f.ShowDialog(this);
+
+
                     if (result == DialogResult.Cancel)
                         return;
 

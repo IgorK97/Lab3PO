@@ -10,8 +10,19 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
+    public delegate void EPizzaNameChanged(int value);
+    public delegate void EPizzaSizeChanged(int value);
+    public delegate void EPizzaCountChanged(int value);
+    public delegate void EPizzaIngredientChanged();
+
+
     internal class AddClientForm : Form
     {
+        public static event EPizzaNameChanged NameNotify;
+        public static event EPizzaSizeChanged SizeNotify;
+        public static event EPizzaCountChanged CountNotify;
+        public static event EPizzaIngredientChanged IngredientNotify;
+
         private GroupBox groupBox1;
         private Label label8;
         private Label label7;
@@ -22,15 +33,16 @@ namespace WindowsFormsApp2
         public ComboBox comboBoxPizzasSizes;
         public RichTextBox richTextBox1;
         public DataGridView dataGridView1;
+        private Label label2;
+        public TextBox textBoxPrice;
+        public TextBox textBoxWeight;
+        private Label label3;
         private DataGridViewTextBoxColumn Ingredients_Name;
         private DataGridViewCheckBoxColumn Include;
         private DataGridViewTextBoxColumn Price;
         private DataGridViewTextBoxColumn weightingr;
         private DataGridViewTextBoxColumn IdIngr;
-        private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Label label3;
+        private System.ComponentModel.IContainer components;
         public Button button1;
 
         //MyPizzaDeliveryContext dbContext/* = new PizzaDeliveryContext()*/;
@@ -51,15 +63,15 @@ namespace WindowsFormsApp2
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxPizzasSizes = new System.Windows.Forms.ComboBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBoxPizzasName = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBoxPizzasName = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.comboBoxPizzasSizes = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Ingredients_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Include = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -67,12 +79,12 @@ namespace WindowsFormsApp2
             this.weightingr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdIngr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxPrice = new System.Windows.Forms.TextBox();
+            this.textBoxWeight = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,78 +104,6 @@ namespace WindowsFormsApp2
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Добавление пиццы в корзину";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 213);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Выберите количество";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 178);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(133, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Выберите размер пиццы";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Название пиццы";
-            // 
-            // button1
-            // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(255, 546);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 34);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Добавить в корзину";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // comboBoxPizzasName
-            // 
-            this.comboBoxPizzasName.FormattingEnabled = true;
-            this.comboBoxPizzasName.Location = new System.Drawing.Point(138, 25);
-            this.comboBoxPizzasName.Name = "comboBoxPizzasName";
-            this.comboBoxPizzasName.Size = new System.Drawing.Size(185, 21);
-            this.comboBoxPizzasName.TabIndex = 16;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(202, 52);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(121, 106);
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(23, 53);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(158, 105);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "";
-            // 
-            // comboBoxPizzasSizes
-            // 
-            this.comboBoxPizzasSizes.FormattingEnabled = true;
-            this.comboBoxPizzasSizes.Location = new System.Drawing.Point(202, 175);
-            this.comboBoxPizzasSizes.Name = "comboBoxPizzasSizes";
-            this.comboBoxPizzasSizes.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxPizzasSizes.TabIndex = 19;
             // 
             // numericUpDown1
             // 
@@ -186,6 +126,80 @@ namespace WindowsFormsApp2
             0,
             0,
             0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // comboBoxPizzasSizes
+            // 
+            this.comboBoxPizzasSizes.FormattingEnabled = true;
+            this.comboBoxPizzasSizes.Location = new System.Drawing.Point(202, 175);
+            this.comboBoxPizzasSizes.Name = "comboBoxPizzasSizes";
+            this.comboBoxPizzasSizes.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxPizzasSizes.TabIndex = 19;
+            this.comboBoxPizzasSizes.SelectedIndexChanged += new System.EventHandler(this.comboBoxPizzasSizes_SelectedIndexChanged);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(23, 53);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(158, 105);
+            this.richTextBox1.TabIndex = 18;
+            this.richTextBox1.Text = "";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(202, 52);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(121, 106);
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
+            // comboBoxPizzasName
+            // 
+            this.comboBoxPizzasName.FormattingEnabled = true;
+            this.comboBoxPizzasName.Location = new System.Drawing.Point(138, 25);
+            this.comboBoxPizzasName.Name = "comboBoxPizzasName";
+            this.comboBoxPizzasName.Size = new System.Drawing.Size(185, 21);
+            this.comboBoxPizzasName.TabIndex = 16;
+            this.comboBoxPizzasName.SelectedIndexChanged += new System.EventHandler(this.comboBoxPizzasName_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(20, 213);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(118, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Выберите количество";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(20, 178);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(133, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Выберите размер пиццы";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Название пиццы";
+            // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.button1.Location = new System.Drawing.Point(255, 546);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 34);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Добавить в корзину";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // dataGridView1
             // 
@@ -202,13 +216,14 @@ namespace WindowsFormsApp2
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(360, 232);
             this.dataGridView1.TabIndex = 6;
-            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_CellValueChanged);
             // 
             // Ingredients_Name
             // 
             this.Ingredients_Name.DataPropertyName = "C_name";
             this.Ingredients_Name.HeaderText = "Ингредиент";
             this.Ingredients_Name.Name = "Ingredients_Name";
+            this.Ingredients_Name.ReadOnly = true;
             // 
             // Include
             // 
@@ -221,6 +236,7 @@ namespace WindowsFormsApp2
             this.Price.DataPropertyName = "price";
             this.Price.HeaderText = "Цена";
             this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             this.Price.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -229,6 +245,7 @@ namespace WindowsFormsApp2
             this.weightingr.DataPropertyName = "weight";
             this.weightingr.HeaderText = "Вес";
             this.weightingr.Name = "weightingr";
+            this.weightingr.ReadOnly = true;
             this.weightingr.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.weightingr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -237,6 +254,7 @@ namespace WindowsFormsApp2
             this.IdIngr.DataPropertyName = "id";
             this.IdIngr.HeaderText = "Id";
             this.IdIngr.Name = "IdIngr";
+            this.IdIngr.ReadOnly = true;
             this.IdIngr.Visible = false;
             // 
             // label2
@@ -248,21 +266,21 @@ namespace WindowsFormsApp2
             this.label2.TabIndex = 7;
             this.label2.Text = "Цена";
             // 
-            // textBox1
+            // textBoxPrice
             // 
-            this.textBox1.Location = new System.Drawing.Point(67, 507);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 8;
+            this.textBoxPrice.Location = new System.Drawing.Point(67, 507);
+            this.textBoxPrice.Name = "textBoxPrice";
+            this.textBoxPrice.ReadOnly = true;
+            this.textBoxPrice.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPrice.TabIndex = 8;
             // 
-            // textBox2
+            // textBoxWeight
             // 
-            this.textBox2.Location = new System.Drawing.Point(67, 534);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 9;
+            this.textBoxWeight.Location = new System.Drawing.Point(67, 534);
+            this.textBoxWeight.Name = "textBoxWeight";
+            this.textBoxWeight.ReadOnly = true;
+            this.textBoxWeight.Size = new System.Drawing.Size(100, 20);
+            this.textBoxWeight.TabIndex = 9;
             // 
             // label3
             // 
@@ -277,34 +295,28 @@ namespace WindowsFormsApp2
             // 
             this.ClientSize = new System.Drawing.Size(386, 592);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxWeight);
+            this.Controls.Add(this.textBoxPrice);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AddClientForm";
-            this.Text = "Новый клиент";
+            this.Text = "Добавление пиццы в корзину";
             this.Load += new System.EventHandler(this.AddClientForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
+        
 
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -427,9 +439,40 @@ namespace WindowsFormsApp2
 
         }
 
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
+        //private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if(comboBoxPizzasName.SelectedValue is int) 
+        //        IngredientNotify();
+        //}
 
+        private void comboBoxPizzasName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (/*textBoxPrice.Text.Length > 0*/ comboBoxPizzasName.SelectedValue is int)
+            {
+                int index = (int)comboBoxPizzasName.SelectedValue;
+                NameNotify(index);
+            }
+        }
+
+        private void comboBoxPizzasSizes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxPizzasSizes.SelectedValue is int)
+            { 
+                int index = (int)comboBoxPizzasSizes.SelectedValue;
+                SizeNotify(index);
+            }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            int index = (int)numericUpDown1.Value;
+            CountNotify(index);
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxPizzasName.SelectedValue is int)
+                IngredientNotify();
         }
     }
 }

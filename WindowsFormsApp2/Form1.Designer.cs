@@ -35,27 +35,16 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.dataGridViewOrderLines = new System.Windows.Forms.DataGridView();
+            this.Id_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersId_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pizzaId = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.CustomColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PositionPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceOrderLines = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxIngredients = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridViewReport1 = new System.Windows.Forms.DataGridView();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewReport2 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
-            this.bindingSourceOrderLines = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
             this.IdOrders = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientId_Orders = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourierId_Orders = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -67,23 +56,36 @@
             this.delstatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.managersId = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Id_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersId_OrderLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pizzaId = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.CustomColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.PositionPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumberofOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
+            this.button2 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxIngredients = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dataGridViewReport1 = new System.Windows.Forms.DataGridView();
             this.Idpizzas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ND = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridViewReport2 = new System.Windows.Forms.DataGridView();
+            this.NumberofOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrderLines)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport1)).BeginInit();
@@ -92,8 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -173,6 +173,52 @@
             this.dataGridViewOrderLines.TabIndex = 1;
             this.dataGridViewOrderLines.DoubleClick += new System.EventHandler(this.dataGridViewClients_DoubleClick);
             // 
+            // Id_OrderLine
+            // 
+            this.Id_OrderLine.DataPropertyName = "id";
+            this.Id_OrderLine.HeaderText = "Id";
+            this.Id_OrderLine.Name = "Id_OrderLine";
+            this.Id_OrderLine.ReadOnly = true;
+            this.Id_OrderLine.Visible = false;
+            // 
+            // OrdersId_OrderLine
+            // 
+            this.OrdersId_OrderLine.DataPropertyName = "ordersId";
+            this.OrdersId_OrderLine.HeaderText = "Номер заказа";
+            this.OrdersId_OrderLine.Name = "OrdersId_OrderLine";
+            this.OrdersId_OrderLine.ReadOnly = true;
+            this.OrdersId_OrderLine.Visible = false;
+            // 
+            // pizzaId
+            // 
+            this.pizzaId.DataPropertyName = "pizzaId";
+            this.pizzaId.HeaderText = "Пицца";
+            this.pizzaId.Name = "pizzaId";
+            this.pizzaId.ReadOnly = true;
+            // 
+            // CustomColumn
+            // 
+            this.CustomColumn.DataPropertyName = "custom";
+            this.CustomColumn.HeaderText = "Пользовательская";
+            this.CustomColumn.Name = "CustomColumn";
+            this.CustomColumn.ReadOnly = true;
+            // 
+            // PositionPrice
+            // 
+            this.PositionPrice.DataPropertyName = "position_price";
+            this.PositionPrice.HeaderText = "Цена";
+            this.PositionPrice.Name = "PositionPrice";
+            this.PositionPrice.ReadOnly = true;
+            // 
+            // Weight
+            // 
+            this.Weight.DataPropertyName = "weight";
+            this.Weight.HeaderText = "Вес";
+            this.Weight.Name = "Weight";
+            this.Weight.ReadOnly = true;
+            this.Weight.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Weight.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(7, 4);
@@ -219,6 +265,90 @@
             this.dataGridViewOrders.ReadOnly = true;
             this.dataGridViewOrders.Size = new System.Drawing.Size(755, 343);
             this.dataGridViewOrders.TabIndex = 1;
+            // 
+            // IdOrders
+            // 
+            this.IdOrders.DataPropertyName = "id";
+            this.IdOrders.HeaderText = "Номер заказа";
+            this.IdOrders.Name = "IdOrders";
+            this.IdOrders.ReadOnly = true;
+            // 
+            // clientId_Orders
+            // 
+            this.clientId_Orders.DataPropertyName = "clientId";
+            this.clientId_Orders.HeaderText = "Клиент";
+            this.clientId_Orders.Name = "clientId_Orders";
+            this.clientId_Orders.ReadOnly = true;
+            this.clientId_Orders.Visible = false;
+            // 
+            // CourierId_Orders
+            // 
+            this.CourierId_Orders.DataPropertyName = "courierId";
+            this.CourierId_Orders.HeaderText = "Курьер";
+            this.CourierId_Orders.Name = "CourierId_Orders";
+            this.CourierId_Orders.ReadOnly = true;
+            this.CourierId_Orders.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CourierId_Orders.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.CourierId_Orders.Visible = false;
+            // 
+            // final_price
+            // 
+            this.final_price.DataPropertyName = "final_price";
+            this.final_price.HeaderText = "Цена";
+            this.final_price.Name = "final_price";
+            this.final_price.ReadOnly = true;
+            // 
+            // address_del
+            // 
+            this.address_del.DataPropertyName = "address_del";
+            this.address_del.HeaderText = "Адрес";
+            this.address_del.Name = "address_del";
+            this.address_del.ReadOnly = true;
+            // 
+            // weight_orders
+            // 
+            this.weight_orders.DataPropertyName = "weight";
+            this.weight_orders.HeaderText = "Вес";
+            this.weight_orders.Name = "weight_orders";
+            this.weight_orders.ReadOnly = true;
+            // 
+            // ordertime
+            // 
+            this.ordertime.DataPropertyName = "ordertime";
+            this.ordertime.HeaderText = "Время заказа";
+            this.ordertime.Name = "ordertime";
+            this.ordertime.ReadOnly = true;
+            // 
+            // deliverytime
+            // 
+            this.deliverytime.DataPropertyName = "deliverytime";
+            this.deliverytime.HeaderText = "Время доставки";
+            this.deliverytime.Name = "deliverytime";
+            this.deliverytime.ReadOnly = true;
+            // 
+            // delstatus
+            // 
+            this.delstatus.DataPropertyName = "delstatusId";
+            this.delstatus.HeaderText = "Статус";
+            this.delstatus.Name = "delstatus";
+            this.delstatus.ReadOnly = true;
+            // 
+            // comment
+            // 
+            this.comment.DataPropertyName = "comment";
+            this.comment.HeaderText = "Примечание";
+            this.comment.Name = "comment";
+            this.comment.ReadOnly = true;
+            // 
+            // managersId
+            // 
+            this.managersId.DataPropertyName = "managersId";
+            this.managersId.HeaderText = "Менеджер";
+            this.managersId.Name = "managersId";
+            this.managersId.ReadOnly = true;
+            this.managersId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.managersId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.managersId.Visible = false;
             // 
             // button2
             // 
@@ -305,6 +435,28 @@
             this.dataGridViewReport1.Size = new System.Drawing.Size(762, 321);
             this.dataGridViewReport1.TabIndex = 1;
             this.dataGridViewReport1.DoubleClick += new System.EventHandler(this.dataGridViewReport1_DoubleClick);
+            // 
+            // Idpizzas
+            // 
+            this.Idpizzas.DataPropertyName = "Id";
+            this.Idpizzas.HeaderText = "Id";
+            this.Idpizzas.Name = "Idpizzas";
+            this.Idpizzas.ReadOnly = true;
+            this.Idpizzas.Visible = false;
+            // 
+            // NA
+            // 
+            this.NA.DataPropertyName = "Name";
+            this.NA.HeaderText = "Название";
+            this.NA.Name = "NA";
+            this.NA.ReadOnly = true;
+            // 
+            // ND
+            // 
+            this.ND.DataPropertyName = "Description";
+            this.ND.HeaderText = "Описание";
+            this.ND.Name = "ND";
+            this.ND.ReadOnly = true;
             // 
             // tabPage4
             // 
@@ -407,146 +559,6 @@
             this.dataGridViewReport2.Size = new System.Drawing.Size(761, 339);
             this.dataGridViewReport2.TabIndex = 1;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(379, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 37);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Найти";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.buttonReport2_Click);
-            // 
-            // IdOrders
-            // 
-            this.IdOrders.DataPropertyName = "id";
-            this.IdOrders.HeaderText = "Номер заказа";
-            this.IdOrders.Name = "IdOrders";
-            this.IdOrders.ReadOnly = true;
-            // 
-            // clientId_Orders
-            // 
-            this.clientId_Orders.DataPropertyName = "clientId";
-            this.clientId_Orders.HeaderText = "Клиент";
-            this.clientId_Orders.Name = "clientId_Orders";
-            this.clientId_Orders.ReadOnly = true;
-            this.clientId_Orders.Visible = false;
-            // 
-            // CourierId_Orders
-            // 
-            this.CourierId_Orders.DataPropertyName = "courierId";
-            this.CourierId_Orders.HeaderText = "Курьер";
-            this.CourierId_Orders.Name = "CourierId_Orders";
-            this.CourierId_Orders.ReadOnly = true;
-            this.CourierId_Orders.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CourierId_Orders.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.CourierId_Orders.Visible = false;
-            // 
-            // final_price
-            // 
-            this.final_price.DataPropertyName = "final_price";
-            this.final_price.HeaderText = "Цена";
-            this.final_price.Name = "final_price";
-            this.final_price.ReadOnly = true;
-            // 
-            // address_del
-            // 
-            this.address_del.DataPropertyName = "address_del";
-            this.address_del.HeaderText = "Адрес";
-            this.address_del.Name = "address_del";
-            this.address_del.ReadOnly = true;
-            // 
-            // weight_orders
-            // 
-            this.weight_orders.DataPropertyName = "weight";
-            this.weight_orders.HeaderText = "Вес";
-            this.weight_orders.Name = "weight_orders";
-            this.weight_orders.ReadOnly = true;
-            // 
-            // ordertime
-            // 
-            this.ordertime.DataPropertyName = "ordertime";
-            this.ordertime.HeaderText = "Время заказа";
-            this.ordertime.Name = "ordertime";
-            this.ordertime.ReadOnly = true;
-            // 
-            // deliverytime
-            // 
-            this.deliverytime.DataPropertyName = "deliverytime";
-            this.deliverytime.HeaderText = "Время доставки";
-            this.deliverytime.Name = "deliverytime";
-            this.deliverytime.ReadOnly = true;
-            // 
-            // delstatus
-            // 
-            this.delstatus.DataPropertyName = "delstatusId";
-            this.delstatus.HeaderText = "Статус";
-            this.delstatus.Name = "delstatus";
-            this.delstatus.ReadOnly = true;
-            // 
-            // comment
-            // 
-            this.comment.DataPropertyName = "comment";
-            this.comment.HeaderText = "Примечание";
-            this.comment.Name = "comment";
-            this.comment.ReadOnly = true;
-            // 
-            // managersId
-            // 
-            this.managersId.DataPropertyName = "managersId";
-            this.managersId.HeaderText = "Менеджер";
-            this.managersId.Name = "managersId";
-            this.managersId.ReadOnly = true;
-            this.managersId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.managersId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.managersId.Visible = false;
-            // 
-            // Id_OrderLine
-            // 
-            this.Id_OrderLine.DataPropertyName = "id";
-            this.Id_OrderLine.HeaderText = "Id";
-            this.Id_OrderLine.Name = "Id_OrderLine";
-            this.Id_OrderLine.ReadOnly = true;
-            this.Id_OrderLine.Visible = false;
-            // 
-            // OrdersId_OrderLine
-            // 
-            this.OrdersId_OrderLine.DataPropertyName = "ordersId";
-            this.OrdersId_OrderLine.HeaderText = "Номер заказа";
-            this.OrdersId_OrderLine.Name = "OrdersId_OrderLine";
-            this.OrdersId_OrderLine.ReadOnly = true;
-            this.OrdersId_OrderLine.Visible = false;
-            // 
-            // pizzaId
-            // 
-            this.pizzaId.DataPropertyName = "pizzaId";
-            this.pizzaId.HeaderText = "Пицца";
-            this.pizzaId.Name = "pizzaId";
-            this.pizzaId.ReadOnly = true;
-            // 
-            // CustomColumn
-            // 
-            this.CustomColumn.DataPropertyName = "custom";
-            this.CustomColumn.HeaderText = "Пользовательская";
-            this.CustomColumn.Name = "CustomColumn";
-            this.CustomColumn.ReadOnly = true;
-            // 
-            // PositionPrice
-            // 
-            this.PositionPrice.DataPropertyName = "position_price";
-            this.PositionPrice.HeaderText = "Цена";
-            this.PositionPrice.Name = "PositionPrice";
-            this.PositionPrice.ReadOnly = true;
-            // 
-            // Weight
-            // 
-            this.Weight.DataPropertyName = "weight";
-            this.Weight.HeaderText = "Вес";
-            this.Weight.Name = "Weight";
-            this.Weight.ReadOnly = true;
-            this.Weight.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Weight.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // NumberofOrder
             // 
             this.NumberofOrder.DataPropertyName = "order_id";
@@ -568,27 +580,15 @@
             this.FC.Name = "FC";
             this.FC.ReadOnly = true;
             // 
-            // Idpizzas
+            // button4
             // 
-            this.Idpizzas.DataPropertyName = "Id";
-            this.Idpizzas.HeaderText = "Id";
-            this.Idpizzas.Name = "Idpizzas";
-            this.Idpizzas.ReadOnly = true;
-            this.Idpizzas.Visible = false;
-            // 
-            // NA
-            // 
-            this.NA.DataPropertyName = "Name";
-            this.NA.HeaderText = "Название";
-            this.NA.Name = "NA";
-            this.NA.ReadOnly = true;
-            // 
-            // ND
-            // 
-            this.ND.DataPropertyName = "Description";
-            this.ND.HeaderText = "Описание";
-            this.ND.Name = "ND";
-            this.ND.ReadOnly = true;
+            this.button4.Location = new System.Drawing.Point(379, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(94, 37);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "Найти";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.buttonReport2_Click);
             // 
             // Form1
             // 
@@ -602,8 +602,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrderLines)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -614,8 +616,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrderLines)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
             this.ResumeLayout(false);
 
         }

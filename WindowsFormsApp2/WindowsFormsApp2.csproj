@@ -121,6 +121,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BLL.IngredientShortDto.datasource" />
     <None Include="Properties\DataSources\clients.datasource" />
     <None Include="Properties\DataSources\orders.datasource" />
     <None Include="Properties\Settings.settings">
